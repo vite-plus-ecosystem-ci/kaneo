@@ -32,7 +32,7 @@ jobs:
   plan:
     name: Plan
     timeout-minutes: 15
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     permissions:
       contents: write # semantic-release verifies push permission even on a dry run
     outputs:
@@ -99,7 +99,7 @@ jobs:
     name: Verify CI for release source
     needs: plan
     if: ${{ !inputs.dry_run && needs.plan.outputs.version != '' }}
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 35
     permissions:
       contents: read
@@ -148,7 +148,7 @@ jobs:
     needs: [plan, images, chart]
     if: ${{ !inputs.dry_run && needs.plan.outputs.version != '' }}
     timeout-minutes: 15
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       issues: write
@@ -208,7 +208,7 @@ jobs:
     name: Promote
     needs: [plan, release]
     timeout-minutes: 15
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
