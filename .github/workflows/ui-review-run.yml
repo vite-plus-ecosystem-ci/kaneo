@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   plan:
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
       artifact: ${{ steps.plan-artifact.outputs.artifact-id }}
@@ -53,7 +53,7 @@ jobs:
 
   capture:
     needs: plan
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     # PR code executes only on this disposable runner, without provider secrets or write permissions.
     outputs:
@@ -92,7 +92,7 @@ jobs:
 
   review-and-post:
     needs: [plan, capture]
-    runs-on: blacksmith-4vcpu-ubuntu-2404
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: useblacksmith/checkout@25227e61ff9dafe400e22fa487b673eac4e4409a # v1
